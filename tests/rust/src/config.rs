@@ -28,6 +28,7 @@ impl TestConfig {
         let no_fd_allocate = std::env::var("NO_FD_ALLOCATE").is_ok();
         let no_rename_dir_to_empty_dir = std::env::var("NO_RENAME_DIR_TO_EMPTY_DIR").is_ok();
         let no_fdflags_sync_support = std::env::var("NO_FDFLAGS_SYNC_SUPPORT").is_ok();
+
         TestConfig {
             errno_mode,
             no_dangling_filesystem,
