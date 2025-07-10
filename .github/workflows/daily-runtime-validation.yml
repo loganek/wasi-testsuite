@@ -52,7 +52,8 @@ jobs:
           sudo apt install -y clang
           curl -sSf https://raw.githubusercontent.com/WasmEdge/WasmEdge/master/utils/install.sh | bash
           echo "~/.wasmedge/bin/" >> $GITHUB_PATH
-          cp .github/scripts/wasi-testsuite-adapter.py ../adapters/wasmedge.py
+          git clone https://github.com/WasmEdge/WasmEdge.git
+          cp WasmEdge/.github/wasi_testsuite_adapter.py ./adapters/wasmedge.py
 
       - name: Install wazero
         if: matrix.runtime == 'wazero'
@@ -61,8 +62,7 @@ jobs:
           cd wazero
           go install ./cmd/wazero
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
-          git clone https://github.com/WasmEdge/WasmEdge.git
-          cp WasmEdge/.github/wasi_testsuite_adapter.py ./adapters/wazero.py
+          cp .github/wasi_testsuite_adapter.py ../adapters/wazero.py
 
       - name: Get current timestamp
         run: echo "date=$(date +'%Y-%m-%d_%H_%M')" >> $GITHUB_ENV
